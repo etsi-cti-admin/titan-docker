@@ -66,8 +66,6 @@ RUN cd /home/root \
 
 RUN . /home/root/devenv.bash
 
-# RUN ttcn3_compiler -v
-
-CMD bash
+RUN ttcn3_compiler -v
 
 # That's all Floks

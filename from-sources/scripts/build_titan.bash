@@ -16,6 +16,8 @@ fi
 CURDIR=`pwd`
 TITAN_DIR=${TOP}/../titan
 
+echo "TITAN_DIR: ${TITAN_DIR}"
+
 # Move to the right directory
 if [ ! -d ${TITAN_DIR} ]
 then

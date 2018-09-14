@@ -13,12 +13,6 @@ ENV HOSTNAME docker-titan
 ENV TITAN_URL=https://www.eclipse.org/downloads/download.php?file=/titan/ttcn3-6.3.pl0-linux64-gcc4.4-centos6.tgz\&r=1
 ENV TITAN_ARCHIVE=ttcn3-6.3.pl0-linux64-gcc4.4-centos6.tgz
 
-#RUN   apk update \
-#  &&   apk add ca-certificates wget \
-#  &&   update-ca-certificates    
-
-RUN yum update
-
 RUN yum install -y wget
 RUN yum groupinstall -y 'Development Tools'
 RUN yum -y install libxml2 libxml2-devel openssl-devel

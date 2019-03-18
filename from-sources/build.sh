@@ -6,6 +6,8 @@ set -e
 set -vx
 
 #check and build stfubuntu image
+DOCKER_ID=`docker ps -a | grep -e stfubuntu | awk '{ print $1 }'`
+docker rm --force ${DOCKER_ID}
 if [ -z `docker images -q stfubuntu` ]; then
   docker build --tag stfubuntu:18.04 -f Dockerfile.stfubuntu --force-rm  . || exit 1
 fi

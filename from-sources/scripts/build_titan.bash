@@ -1,11 +1,8 @@
 #!/bin/bash
-# Copyright ETSI 2018
-# See: https://forge.etsi.org/etsi-forge-copyright-statement.txt
-
 set -e
 #set -vx
 
-# clear
+clear
 
 if [ -z "${TOP}" ]
 then
@@ -14,9 +11,7 @@ then
 fi
 
 CURDIR=`pwd`
-TITAN_DIR=${TOP}/../titan
-
-echo "TITAN_DIR: ${TITAN_DIR}"
+TITAN_DIR=${TOP}/..
 
 # Move to the right directory
 if [ ! -d ${TITAN_DIR} ]
@@ -49,10 +44,7 @@ then
         fi
     done
 else
-	 echo "Titan directory does exist"
     cd ${TITAN_DIR}
-    echo "TITAN DIR: $(pwd)"
-    ls -l
     # Update github folders
     DIRS=`find . -type d -name ".git" -exec dirname {} \;`
     for i in ${DIRS};
@@ -74,7 +66,6 @@ else
     done
 fi
 
-
 # Build TITAN core
 export JNI=no
 export GUI=no
@@ -84,7 +75,7 @@ if [ -d ${TTCN3_DIR} ]
 then
     rm -fr ${TTCN3_DIR}
 fi
-mkdir -p ${TTCN3_DIR}
+mkdir ${TTCN3_DIR}
 cd ./titan.core
 /bin/cat <<EOF > Makefile.personal
 JNI:=no

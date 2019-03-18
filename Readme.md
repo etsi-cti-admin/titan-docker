@@ -2,6 +2,12 @@
 
 Build and run Titan in a Docker environment
 
+## From source
+This project build a Titan environment from scratch.
+The built container can be used for any ETSI project based on TTCN-3/TITAN development.
+
+
+
 ## Contact information
 
 Email at cti_support at etsi dot org

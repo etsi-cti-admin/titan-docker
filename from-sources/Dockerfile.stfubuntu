@@ -1,0 +1,86 @@
+FROM ubuntu:18.04
+
+MAINTAINER ETSI-CTI
+
+LABEL description="STF Docker Ubuntu image"
+
+ENV TERM=linux \
+    HOSTNAME=docker-STF
+
+RUN echo "docker-STF-dev" > /etc/hostname \
+    && DEBIAN_FRONTEND=noninteractive apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get install software-properties-common -y \
+    && DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:linuxuprising/java -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get update \
+    && ( echo "oracle-java10-installer shared/accepted-oracle-license-v1-1 boolean true" | debconf-set-selections -v ) \
+    && DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated install -y \
+      autoconf \
+      bison \
+      build-essential \
+      cmake \
+      curl \
+      dos2unix \
+      doxygen \
+      emacs \
+      expect \
+      flex \
+      g++-8 \
+      gcc-8 \
+      gdb \
+      git-core \
+      gnutls-bin \
+      graphviz \
+      libglib2.0-dev \
+      libpcap-dev \
+      libgcrypt-dev \
+      libncurses5-dev \
+      libssl-dev \
+      libtool-bin \
+      libtool \
+      libwireshark-dev \
+      libxml2-dev \
+      lsof \
+      ntp \
+      pkg-config \
+      qt5-default \
+      qtmultimedia5-dev \
+      libqt5svg5-dev \
+      subversion \
+      sudo \
+      sshpass \
+      tcpdump \
+      texlive-font-utils \
+      tshark \
+      tzdata \
+      valgrind \
+      vim \
+      vsftpd \
+      xutils-dev \
+      tree \
+      unzip \
+      wget \
+      xsltproc \
+      oracle-java10-installer \
+      oracle-java10-set-default \
+      libxml2-utils \
+      net-tools \
+      iputils-ping \
+    && DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get autoclean \
+    && useradd --create-home --shell /bin/bash etsi \
+    && echo "etsi:etsi" | chpasswd \
+    && adduser etsi sudo \
+    && echo "" >> /etc/profile \
+    && echo 'export HOME=/home/etsi' >> /etc/profile \
+    && echo 'export LD_LIBRARY_PATH=${HOME}/lib:$LD_LIBRARY_PATH' >> /etc/profile \
+    && echo 'export PATH=${HOME}/bin:$PATH' >> /etc/profile \
+    && echo 'cd ${HOME}' >> /etc/profile \
+    && echo ". ./devenv.bash" >> /etc/profile \
+    && cd /home/etsi \
+    && mkdir -p bin lib include tmp frameworks docs man dev src \
+    && chown -R etsi:etsi *
+
+CMD ["/bin/bash"]
+
+# That's all Floks

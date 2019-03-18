@@ -1,6 +1,17 @@
 #!/bin/bash
 
-echo "Building titan:binaries"
+set -e
+set -vx
 
-cd from-binaries
-docker build --tag titan-bin .
+#echo "Building titan:binaries"
+#cd from-binaries
+#docker build --tag titan-bin .
+
+echo "Building titan:binaries"
+cd from-sources
+./.jenkins.sh
+
+cd -
+
+# That's all Floks
+exit 0

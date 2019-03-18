@@ -30,6 +30,7 @@ RUN echo "docker-STF-dev" > /etc/hostname \
       git-core \
       gnutls-bin \
       graphviz \
+      iputils-ping \
       libglib2.0-dev \
       libpcap-dev \
       libgcrypt-dev \
@@ -39,7 +40,9 @@ RUN echo "docker-STF-dev" > /etc/hostname \
       libtool \
       libwireshark-dev \
       libxml2-dev \
+      libxml2-utils \
       lsof \
+      net-tools \
       ntp \
       oracle-java11-set-default \
       pkg-config \
@@ -52,20 +55,15 @@ RUN echo "docker-STF-dev" > /etc/hostname \
       tcpdump \
       texlive-font-utils \
       tshark \
+      tree \
       tzdata \
+      unzip \
       valgrind \
       vim \
       vsftpd \
-      xutils-dev \
-      tree \
-      unzip \
       wget \
+      xutils-dev \
       xsltproc \
-      oracle-java10-installer \
-      oracle-java10-set-default \
-      libxml2-utils \
-      net-tools \
-      iputils-ping \
     && DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y \
     && DEBIAN_FRONTEND=noninteractive apt-get autoclean \
     && useradd --create-home --shell /bin/bash etsi \

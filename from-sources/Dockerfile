@@ -1,7 +1,7 @@
 # Copyright ETSI 2018
 # See: https://forge.etsi.org/etsi-forge-copyright-statement.txt
 
-FROM gcc:latest
+FROM stfubuntu:18.04
 
 MAINTAINER ETSI-CTI
 
@@ -13,12 +13,12 @@ ENV TERM=linux \
 
 USER etsi
 
-COPY home /home/etsi
+ADD ./home/etc /home/etsi/etc
 
 RUN cd ${HOME} \
     && export PATH=${HOME}/bin:${PATH} \
     && export LD_LIBRARY_PATH=${HOME}/lib:${LD_LIBRARY_PATH} \
-    && ls ${HOME}/etc/init.d/*.sh | while read S; do chmod 0750 "$S"; /bin/bash -c "$S" || exit 1; done
+    && find ${HOME}/etc/init.d -type f -name "*.sh" | while read S; do chmod 0750 "$S"; /bin/bash -c "$S" || exit 1; done
 
 CMD ["/bin/bash"]
 

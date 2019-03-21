@@ -32,7 +32,7 @@ make && make install || exit 1
 mkdir -p $TTCN3_DIR/../titan-modules
 cd $TTCN3_DIR/../titan-modules || exit 1
 cat ${HOME}/etc/titan_repos.txt | grep -v -e '^\s*#' -e 'titan\.core' | while read REPO; do
-  [ -z $ ${REPO} ] && continue
+  [ -z ${REPO} ] && continue
   WS=`echo ${REPO} | sed -e 's|.*/||g' -e 's|\.git||g'`
   if git clone --progress "${REPO}" "${WS}"; then
     [ -f "${WS}/Makefile" ] && make -C "${WS}"

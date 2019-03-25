@@ -1,4 +1,8 @@
 #!/bin/bash
+
+#set -e
+set -vx
+
 echo -e "*****************************\n* Install titan\n*****************************\n"
 SRC_DIR=${HOME}/src/titan
 export TTCN3_DIR=${HOME}/frameworks/titan
@@ -39,3 +43,4 @@ cat ${HOME}/etc/titan_repos.txt | grep -v -e '^\s*#' -e 'titan\.core' | while re
   fi
 done
 
+exit 0
